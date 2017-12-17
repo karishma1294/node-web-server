@@ -7,6 +7,7 @@ app.set('view engine','hbs');
 hbs.registerPartials(__dirname+'/views/partials');
 app.use(express.static(__dirname+'/public'));
 
+const port=process.env.PORT || 3000;
 
 app.use((req,res,next)=>{
   var now=new Date().toString();
@@ -20,9 +21,6 @@ next();
 
 });
 
-// app.use((req,res,next) =>{
-//   res.render('maintenance.hbs');
-// });
 
 hbs.registerHelper('getCurrentYear',()=>{
   return new Date().getFullYear();
@@ -52,6 +50,6 @@ app.get('/bad',(req,res)=>{
       });
 })
 
-app.listen(4200,()=>{
-console.log('server is up on 4200');
+app.listen(port,()=>{
+console.log(`server is up on ${port}`);
 });
